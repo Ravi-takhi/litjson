@@ -7,7 +7,7 @@ The LitJSON community code project is an open-source initiative aimed at develop
 * Enhances productivity: By providing a user-friendly API and comprehensive documentation, LitJSON helps developers save time and effort during the development process.
 ### Link
 https://github.com/Ravi-takhi/litjson/tree/Ravi-Dev-Branch
-### Issue Summary
-This issue, raised by corbinyo, is about making a change in LitJSON. Currently, when using the JsonMapper.ToObject method to turn JSON into objects in .NET, null values in the JSON data become null objects in the resulting .NET objects. But sometimes, we don't want these null values. We'd prefer to skip them to make things simpler.
-
-The request is to add a feature that lets us tell LitJSON to ignore these null values when turning JSON into objects. This would make working with JSON data in .NET even easier and more efficient.
+### Summary of issues examined
+This issue, raised by corbinyo, to find a way to handle null values during deserialization. The task involved ensuring that null values from JSON data were ignored when converting it into C# objects. He is using the Litjson library for the serialization and deserialization.
+### Detailed discussion of issues contributed to
+I worked on a specific issue related to ignoring null values during deserialization with LitJSON. My goal was to prevent null values in JSON from being assigned to object properties during the conversion process. I explored different methods, including manually checking for null values, creating custom importers, and modifying the JSON data before deserialization. Ultimately, I found a solution by adjusting the JSON string before parsing it into objects, effectively solving the problem even though LitJSON doesn't have a built-in feature for this. I also looked into the other libraries such as Newtonsoft, they provides some in-built functionalities to ingnore or skip the null values during the serialization data.
