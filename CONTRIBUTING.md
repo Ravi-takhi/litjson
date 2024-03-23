@@ -31,6 +31,14 @@ class Program
 
         JsonData jsonData = JsonMapper.ToObject(json);
 
+    <!-- Hi Ravi, as the Issue tab is unavailable in the repo, I've decided to add comments in here for the code review:
+    
+    I've had a look at the code, and I agree with how it solves the problem.
+
+    Maybe for a little bit of enhancement to make the code more readable and robust, you could consider introducing a method called DeserializeNonNullValues(JsonData jsonData) to extract non-null values from JSON data. Then returns a 'Student' object that has just non-null values. 
+
+    This helps simplify the logic in Main method. Plus, it conforms to the principle of encapsulation.  Let me know your thoughts. Great work, Ravi.
+     -->
         Student std = new Student();
 
         if (jsonData["Id"] != null)
