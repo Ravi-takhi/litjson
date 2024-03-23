@@ -12,7 +12,7 @@ This issue, raised by corbinyo, to find a way to handle null values during deser
 ### Detailed discussion of issues contributed to
 I worked on a specific issue related to ignoring null values during deserialization with LitJSON. My goal was to prevent null values in JSON from being assigned to object properties during the conversion process. I explored different methods, including manually checking for null values, creating custom importers, and modifying the JSON data before deserialization. Ultimately, I found a solution by adjusting the JSON string before parsing it into objects, effectively solving the problem even though LitJSON doesn't have a built-in feature for this. I also looked into the other libraries such as Newtonsoft, they provides some in-built functionalities to ingnore or skip the null values during the serialization data.
 #### Example for skip null value while deserialization
-```
+``` csharp
 using LitJson;
 using System;
 
