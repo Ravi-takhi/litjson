@@ -87,3 +87,5 @@ class Program
     }
 }
 ```
+### Reflection
+Reflecting on the success of solving the issue, I did manage to fix it in the end. But it wasn't a straightforward journey. I spent a lot of time going through the LitJSON documentation, hoping to find an easy way to skip null values during data reading. Unfortunately, I couldn't find any built-in solution in LitJSON or similar libraries. I even searched online forums like Stack Overflow, but no luck there either. Eventually, I realized I could manually check the data after reading it, which turned out to be the solution. However, when testing the code in Visual Studio, I ran into some errors because I hadn't installed the LitJSON package properly. I had to watch some YouTube tutorials to figure it out. Despite the challenges, I eventually got it all working.
