@@ -57,3 +57,33 @@ class Program
 The initial version of the program effectively handles null values during JSON deserialization into a Student object. However, it could be improved for better readability and maintainability. The improved version introduces a method called RemoveNullValues to handle null values more efficiently. By encapsulating the null value removal logic, the code becomes simpler and easier to maintain. The updated version of the code is definitely a step forward. In the old version, fetching values from the JSON data required mentioning variable names explicitly. This could be troublesome if we add more variables to the Student class later on. However, the new version has a neat function called RemoveNullValues that takes care of this. Now, we don't need to worry about manually handling each variable. This makes the code simpler and more flexible, which is great for maintaining and modifying the Student class in the future. Additionally, a proposed enhancement suggests introducing a method named DeserializeNonNullValues to further streamline the deserialization process. Overall, these changes enhance the readability, maintainability, and robustness of the code, ensuring it adheres to best practices in software development.
 #### Outcome
 Upon receiving feedback from Katrina, I carefully considered her suggestions and realized the importance of simplifying and enhancing the code. By implementing the improvements suggested by Katrina, I was able to make the code more readable, maintainable, and flexible. This highlights the value of feedback in driving positive changes and improving overall code quality.
+### Updated version
+``` csharp
+public class Student
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public int? Age { get; set; } // Nullable int for handling null values
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        string json = "{\"Id\": 1, \"Name\": \"John\", \"Age\": null }"; // JSON string with null value for Age
+
+        // Remove or replace null values from the JSON string
+        json = RemoveNullValues(json);
+
+        Student std = JsonMapper.ToObject<Student>(json);
+
+        Console.WriteLine($"Id: {std.Id}, Name: {std.Name}, Age: {(std.Age.HasValue ? std.Age.ToString() : "N/A")}");
+    }
+
+    static string RemoveNullValues(string json)
+    {
+        // Replace "null" with an empty string
+        return Regex.Replace(json, "\"[^\"]+\":\\s*null,?", "");
+    }
+}
+```
