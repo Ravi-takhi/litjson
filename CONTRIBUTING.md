@@ -108,5 +108,22 @@ class Program
     }
 }
 ```
+### Prerequisites:
+* Install .NET SDK: Ensure that you have the .NET SDK installed on your machine. 
+* Install LitJSON: You need to have LitJSON installed in your project. You can add it via NuGet Package Manager or by running the following command in the terminal within your project directory:
+``` csharp
+dotnet add package LitJson
+```
+#### Steps to Run the Code:
+* Setup Visual Studio Code.
+* Create a New Project.
+* Create Files.
+* Restore Dependencies: Open the terminal in Visual Studio Code and navigate to your project folder. Run the following command to restore dependencies:
+``` csharp
+dotnet restore
+```
 ### Reflection
 Reflecting on the success of solving the issue, I did manage to fix it in the end. But it wasn't a straightforward journey. I spent a lot of time going through the LitJSON documentation, hoping to find an easy way to skip null values during data reading. Unfortunately, I couldn't find any built-in solution in LitJSON or similar libraries. I even searched online forums like Stack Overflow, but no luck there either. Eventually, I realized I could manually check the data after reading it, which turned out to be the solution. However, when testing the code in Visual Studio, I ran into some errors because I hadn't installed the LitJSON package properly. I had to watch some YouTube tutorials to figure it out. Despite the challenges, I eventually got it all working.
+### Discussion of next steps
+To enhance the code, I plan to create a generic function where I can pass values dynamically. My research led me to Text RegularExpressions Regex, which could be useful for creating this generic class. I'll need to learn more about Regex and how to implement it in my project. Once I've replicated the solution in my code, I'll test it with different types of JSON data and ensure proper error handling. Finally, I'll make the solution publicly available so others can benefit from it.
+
