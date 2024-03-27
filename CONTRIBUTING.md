@@ -59,11 +59,22 @@ The initial version of the program effectively handles null values during JSON d
 Upon receiving feedback from Katrina, I carefully considered her suggestions and realized the importance of simplifying and enhancing the code. By implementing the improvements suggested by Katrina, I was able to make the code more readable, maintainable, and flexible. This highlights the value of feedback in driving positive changes and improving overall code quality.
 ### Updated version
 ``` csharp
+using LitJson;
+using System;
+
 public class Student
 {
     public int Id { get; set; }
     public string Name { get; set; }
     public int? Age { get; set; } // Nullable int for handling null values
+
+    // Constructor to initialize properties
+    public Student(int id, string name, int? age)
+    {
+        Id = id;
+        Name = name;
+        Age = age;
+    }
 }
 
 class Program
@@ -72,18 +83,28 @@ class Program
     {
         string json = "{\"Id\": 1, \"Name\": \"John\", \"Age\": null }"; // JSON string with null value for Age
 
-        // Remove or replace null values from the JSON string
-        json = RemoveNullValues(json);
-
-        Student std = JsonMapper.ToObject<Student>(json);
+        Student std = DeserializeStudent(json);
 
         Console.WriteLine($"Id: {std.Id}, Name: {std.Name}, Age: {(std.Age.HasValue ? std.Age.ToString() : "N/A")}");
     }
 
-    static string RemoveNullValues(string json)
+    static Student DeserializeStudent(string json)
     {
-        // Replace "null" with an empty string
-        return Regex.Replace(json, "\"[^\"]+\":\\s*null,?", "");
+        JsonData jsonData = JsonMapper.ToObject(json);
+
+        int id = (int)jsonData["Id"]; // Directly cast to int
+        string name = (string)jsonData["Name"]; // Directly cast to string
+
+        int? age = null; // Initialize age to null by default
+
+        // Handle null value for Age
+        if (jsonData.Keys.Contains("Age") && jsonData["Age"] != null)
+        {
+            if (jsonData["Age"].IsInt) // Check if the value is an integer
+                age = (int)jsonData["Age"];
+        }
+
+        return new Student(id, name, age);
     }
 }
 ```
